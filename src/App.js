@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import CardList from './components/CardList';
+import SearchBox from './components/SearchBox';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      kittens: [],
+      search: '',
+    };
+  }
+  onSearchChange = (event) => {
+    this.setState({ search: event.target.value });
+  };
+  componentDidMount() {
+    fetch('https://jsonplaceholder.cypress.io/users')
+      .then((response) => response.json())
+      .then((user) =>
+        this.setState({
+          kittens: user,
+        })
+      );
+  }
+  render() {
+    const filterKittens = this.state.kittens.filter((kitten) => {
+      return kitten.name
+        .toLowerCase()
+        .includes(this.state.search.toLowerCase());
+    });
+    if (this.state.kittens.length === 0) {
+      return <h1>Loading...</h1>;
+    } else {
+      return (
+        <div className="tc">
+          <h1 className="f1 title">Friends Contact</h1>
+          <SearchBox searchChange={this.onSearchChange} />
+          <CardList kittens={filterKittens} />
+        </div>
+      );
+    }
+  }
 }
 
 export default App;
