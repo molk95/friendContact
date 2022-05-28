@@ -1,16 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App'
+import { Provider } from 'react-redux';
+import { applyMiddleware, legacy_createStore, combineReducers } from 'redux';
+import { searchKittens, requestKittens } from './reducers/reducers';
+import { createLogger } from 'redux-logger';
+import thunk from 'redux-thunk'
 
+import './index.css';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'tachyons';
 
+const rootReducer = combineReducers({ searchKittens, requestKittens });
+const logger = createLogger();
+const store = legacy_createStore(
+  rootReducer,
+  applyMiddleware(thunk, logger)
+);
 
 ReactDOM.render(
   <React.StrictMode>
-  <App /> 
-    </React.StrictMode>,
+    <Provider store={store}>
+      <App />{' '}
+    </Provider>
+  </React.StrictMode>,
   document.getElementById('root')
 );
 
@@ -18,5 +31,3 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-
-
