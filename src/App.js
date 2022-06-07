@@ -54,7 +54,7 @@ class App extends Component {
     } else {
       return (
         <div className="tc">
-          <h1 className="f1 title">Friends Contact</h1>
+          <h1 className="f1 title">CatsCon</h1>
           <SearchBox searchChange={onSearchChange} />
           <CardList kittens={filterKittens} />
         </div>
