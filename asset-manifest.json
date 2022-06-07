@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/friendContact/static/css/main.94920d27.css",
+    "main.js": "/friendContact/static/js/main.280c8941.js",
+    "static/js/787.d84c2030.chunk.js": "/friendContact/static/js/787.d84c2030.chunk.js",
+    "index.html": "/friendContact/index.html",
+    "main.94920d27.css.map": "/friendContact/static/css/main.94920d27.css.map",
+    "main.280c8941.js.map": "/friendContact/static/js/main.280c8941.js.map",
+    "787.d84c2030.chunk.js.map": "/friendContact/static/js/787.d84c2030.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.94920d27.css",
+    "static/js/main.280c8941.js"
+  ]
+}
